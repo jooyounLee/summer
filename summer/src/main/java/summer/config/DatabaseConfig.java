@@ -21,7 +21,7 @@ public class DatabaseConfig {
 		driverManagerDataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
 		driverManagerDataSource.setUrl("jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false&amp;serverTimezone=Asia/Seoul\"");
 		driverManagerDataSource.setUsername("root");
-		driverManagerDataSource.setPassword("1234");
+		driverManagerDataSource.setPassword("");
 		
 		return driverManagerDataSource;
 	}
@@ -30,8 +30,8 @@ public class DatabaseConfig {
 	public SqlSessionFactory sqlSessionFactory() throws Exception {
 		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
 		sqlSessionFactoryBean.setDataSource(dataSource());
-//		sqlSessionFactoryBean.setConfigLocation(applicationContext.getResource(""));
-		sqlSessionFactoryBean.setMapperLocations(applicationContext.getResources("classpath:mapper/*.xml"));
+		sqlSessionFactoryBean.setConfigLocation(applicationContext.getResource("classpath:summer/config/mybatis-config.xml"));
+		sqlSessionFactoryBean.setMapperLocations(applicationContext.getResources("classpath:mapper/**/*.xml"));
 		
 		return sqlSessionFactoryBean.getObject();
 	}
