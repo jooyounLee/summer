@@ -24,4 +24,10 @@ public class ArticleServiceImpl implements ArticleService{
 	public List<Article> findArticles() {
 		return articleRepository.findArticles();
 	}
+
+	@Override
+	public int insertArticle(Article article) {
+		return articleRepository.insertArticle(article);
+	}
+	
 }

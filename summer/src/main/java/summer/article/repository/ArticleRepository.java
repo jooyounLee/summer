@@ -21,4 +21,8 @@ public class ArticleRepository {
 	public List<Article> findArticles() {
 		return sqlSession.selectList("article.articles");
 	}
+	
+	public int insertArticle(Article article) {
+		return sqlSession.insert("article", article);
+	}
 }

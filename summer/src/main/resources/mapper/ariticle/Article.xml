@@ -16,7 +16,20 @@
 	<select id="articles" resultType="summer.article.model.Article">
 		SELECT IDX
 			,  USER_NM AS USERNAME
-			,  ARTICLE_PW AS PASSWORD
 		  FROM BOARD
 	</select>
+	
+	<insert id="insertArticle" parameterType="summer.article.model.Article">
+		INSERT INTO BOARD(
+			  USER_NM
+			, TITLE
+			, CONTENT
+			, CREATED
+		)VALUES(
+			  #{userName}
+			, #{title}
+			, #{content}
+			, NOW()
+		)
+	</insert>
 </mapper>

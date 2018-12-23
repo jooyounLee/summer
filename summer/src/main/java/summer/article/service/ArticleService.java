@@ -9,4 +9,6 @@ public interface ArticleService {
 	int count();
 	
 	List<Article> findArticles();
+	
+	int insertArticle(Article article);
 }
