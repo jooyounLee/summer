@@ -1,32 +1,47 @@
-
 $(() => {
-	console.log(1);
+	var total
 	
-	var gridData = {
-			Name: 'name',
-			A: 'a'
+	, bindEvent = () => {
+		drawGrid();
 	}
 	
-	var grid = new tui.Grid({
-		el: $('#grid'),
-		data: gridData,
-		scrollX: false,
-		scrollY: false,
-		columns: [
-			{
-				title: 'Name',
-				name: 'name'
-			},
-			{
-				title: 'A',
-				name: 'a'
-			}
-		]
-	});
+	, drawGrid = () => {
+		grid = new tui.Grid({
+			el: $('#grid'),
+			//pagination: true,
+			columns: [
+				{
+					title: 'Num',
+					name: 'idx'
+				},
+				{
+					title: 'Name',
+					name: 'userName'
+				},
+				{
+					title: 'Title', 
+					name: 'title'
+				},
+				{
+					title: 'Date',
+					name: 'created'
+				}
+			]
+		});
+		
+		findArticles();
+	} 
+	
+	, findArticles = () => {
+		$.ajax({
+	        type : 'GET',
+	        url : '/summer/articles',
+	        success : (result) => {
+	        	grid.setData(result);
+	        }
+	    });
+	}
 	
 	
-	
-	
-	
-	
+	bindEvent();
 });
