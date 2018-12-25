@@ -1,6 +1,8 @@
 package summer.article.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,9 +27,33 @@ public class ArticleController {
     }
     
    @GetMapping("/articles")
-    public @ResponseBody List<Article> list() {
-    	System.out.println(11);
-    	return articleService.findArticles();
+    public @ResponseBody Map<String, Object> list(int page, int perPage) {
+	   Map<String, Object> result = new HashMap<String, Object>();
+	   Map<String, Object> articles = new HashMap<String, Object>();
+	   Map<String, Object> pagination = new HashMap<String, Object>();
+	   
+	   pagination.put("page", page);
+	   pagination.put("totalCount", articleService.count());
+	   
+	   // TODO : use perPage when select articles data
+	   articles.put("contents", articleService.findArticles());
+	   articles.put("pagination", pagination);
+	   
+	   result.put("result", true);
+	   result.put("data", articles);
+	   
+//	   {
+//		    "result": true,
+//		    "data": {
+//		        "contents": [],
+//		        "pagination": {
+//		            "page": 1,
+//		            "totalCount": 100
+//		        }
+//		    }
+//		}
+	   
+	   return result;
     }
    
    @PostMapping("/article")

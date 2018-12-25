@@ -8,23 +8,19 @@
 
 <link rel="stylesheet" href="<c:url value="/resources/tui/tui-grid.css"/>" />
 <link rel="stylesheet" href="<c:url value="/resources/tui/tui-pagination.css"/>" />
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.js"></script>
+<script type="text/javascript" src="<c:url value="/resources/jquery/jquery-3.3.1.min.js"/>"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.3.3/backbone.js"></script>
 <script type="text/javascript" src="https://uicdn.toast.com/tui.code-snippet/v1.4.0/tui-code-snippet.js"></script>
+<script type="text/javascript" src="https://uicdn.toast.com/tui.pagination/v3.2.0/tui-pagination.js"></script>
 <script src="<c:url value="/resources/tui/tui-grid.js"/>"></script>
-<script src="<c:url value="/resources/tui/tui-pagination.js"/>"></script>
-
 <script src="<c:url value="/resources/js/article.js"/>"></script>
 
 <title>SUMMERS ARTICLE</title>
 </head>
 <body>
 
-11111111<br>
-
-<div id="grid"></div>
-<div id="pagination" class="tui-pagination"></div>
+	<div id="grid"></div>
 
 </body>
 

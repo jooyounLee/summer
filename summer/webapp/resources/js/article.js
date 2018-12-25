@@ -6,9 +6,9 @@ $(() => {
 	}
 	
 	, drawGrid = () => {
-		grid = new tui.Grid({
+		var grid = new tui.Grid({
 			el: $('#grid'),
-			//pagination: true,
+			pagination: true,
 			columns: [
 				{
 					title: 'Num',
@@ -27,9 +27,20 @@ $(() => {
 					name: 'created'
 				}
 			]
-		});
-		
-		findArticles();
+		}).use('Net', {
+		    perPage: 3,
+		    readDataMethod: 'GET',
+		    api: {
+		        readData: '/summer/articles'
+		    }
+		}).on('response', function(data) {
+            var pagination = grid.getPagination();
+            
+            grid.setData(data.responseData);
+            
+            pagination.setTotalItems(data.responseData.data.pagination);
+            pagination._currentPage = data.responseData.data.page;
+        });
 	} 
 	
 	, findArticles = () => {
