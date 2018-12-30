@@ -4,19 +4,22 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="article">
-	<!-- <typeAlias type="summer.article.model.Article" alias="Article"/> -->
-	<!-- <resultMap id="article" type="summer.article.model.Article"/> -->
 	<select id="count" resultType="int">
 	  	SELECT 
 	  		COUNT(idx) 
 	  	  FROM BOARD 
-	  	 WHERE deleted = 0
+	  	 WHERE DELETED = 0
 	</select>
 	
 	<select id="articles" resultType="summer.article.model.Article">
 		SELECT IDX
 			,  USER_NM AS USERNAME
+			,  TITLE
+			,  CREATED
 		  FROM BOARD
+		 WHERE DELETED = 0
+		 ORDER BY IDX DESC 
+		 LIMIT #{offset}, #{perPage}
 	</select>
 	
 	<insert id="insertArticle" parameterType="summer.article.model.Article">

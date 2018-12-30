@@ -27,7 +27,7 @@ public class ArticleController {
     }
     
    @GetMapping("/articles")
-    public @ResponseBody Map<String, Object> list(int page, int perPage) {
+    public @ResponseBody Map<String, Object> list(Integer page, Integer perPage) {
 	   Map<String, Object> result = new HashMap<String, Object>();
 	   Map<String, Object> articles = new HashMap<String, Object>();
 	   Map<String, Object> pagination = new HashMap<String, Object>();
@@ -35,8 +35,7 @@ public class ArticleController {
 	   pagination.put("page", page);
 	   pagination.put("totalCount", articleService.count());
 	   
-	   // TODO : use perPage when select articles data
-	   articles.put("contents", articleService.findArticles());
+	   articles.put("contents", articleService.findArticles(page, perPage));
 	   articles.put("pagination", pagination);
 	   
 	   result.put("result", true);

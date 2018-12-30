@@ -8,7 +8,7 @@ public interface ArticleService {
 	
 	int count();
 	
-	List<Article> findArticles();
+	List<Article> findArticles(Integer currentPage, Integer perPage);
 	
 	int insertArticle(Article article);
 }

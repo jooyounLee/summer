@@ -1,6 +1,7 @@
 package summer.article.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,8 @@ public class ArticleRepository {
 		return sqlSession.selectOne("article.count");
 	}
 	
-	public List<Article> findArticles() {
-		return sqlSession.selectList("article.articles");
+	public List<Article> findArticles(Map<String,Object> pageInfo) {
+		return sqlSession.selectList("article.articles", pageInfo);
 	}
 	
 	public int insertArticle(Article article) {
