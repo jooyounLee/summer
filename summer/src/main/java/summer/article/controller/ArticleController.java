@@ -1,13 +1,13 @@
 package summer.article.controller;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -19,14 +19,19 @@ public class ArticleController {
 	@Autowired
 	private ArticleService articleService;
 	
-    @GetMapping("/")
+	@GetMapping("/")
 	public String home(Model model) {
 		model.addAttribute("name", "aaa" );
         
         return "/article/list";
     }
     
-   @GetMapping("/articles")
+	@GetMapping("/article")
+	public String goWritePage(Model model) {
+		return "/article/write";
+	}
+    
+	@GetMapping("/articles")
     public @ResponseBody Map<String, Object> list(Integer page, Integer perPage) {
 	   Map<String, Object> result = new HashMap<String, Object>();
 	   Map<String, Object> articles = new HashMap<String, Object>();
@@ -56,7 +61,7 @@ public class ArticleController {
     }
    
    @PostMapping("/article")
-   public @ResponseBody int insert(Article article) {
+   public @ResponseBody int insert(@ModelAttribute Article article) {
 	   return articleService.insertArticle(article);
    }
    

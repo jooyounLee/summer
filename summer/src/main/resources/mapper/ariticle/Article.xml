@@ -25,11 +25,13 @@
 	<insert id="insertArticle" parameterType="summer.article.model.Article">
 		INSERT INTO BOARD(
 			  USER_NM
+			, ARTICLE_PW
 			, TITLE
 			, CONTENT
 			, CREATED
 		)VALUES(
 			  #{userName}
+			, #{password}
 			, #{title}
 			, #{content}
 			, NOW()

@@ -1,8 +1,13 @@
 $(() => {
 	var total
-	
-	, bindEvent = () => {
-		drawGrid();
+	, el = {
+			go_write : $("button[name=goWrite]")
+	}
+
+	, clickEvent = () => {
+		el.go_write.on('click', () => {
+			location.href="/summer/article";
+		});
 	}
 	
 	, drawGrid = () => {
@@ -46,14 +51,15 @@ $(() => {
 		        , createData: '/summer/article'
 		    }
 		}).on('response', (data) => {
-            var pagination = grid.getPagination();
-
-            grid.setData(data.responseData);
-            
-            pagination.setTotalItems(data.responseData.data.pagination);
-            pagination._currentPage = data.responseData.data.page;
-        });
-	} 
+	        var pagination = grid.getPagination();
 	
-	bindEvent();
+	        grid.setData(data.responseData);
+	        
+	        pagination.setTotalItems(data.responseData.data.pagination);
+	        pagination._currentPage = data.responseData.data.page;
+	    });
+	}
+	
+	drawGrid();
+	clickEvent();
 });

@@ -24,6 +24,6 @@ public class ArticleRepository {
 	}
 	
 	public int insertArticle(Article article) {
-		return sqlSession.insert("article", article);
+		return sqlSession.insert("article.insertArticle", article);
 	}
 }
