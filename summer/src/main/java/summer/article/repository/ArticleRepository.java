@@ -20,10 +20,14 @@ public class ArticleRepository {
 	}
 	
 	public List<Article> findArticles(Map<String,Object> pageInfo) {
-		return sqlSession.selectList("article.articles", pageInfo);
+		return sqlSession.selectList("article.findAll", pageInfo);
 	}
 	
 	public int insertArticle(Article article) {
 		return sqlSession.insert("article.insertArticle", article);
+	}
+	
+	public Article findByIdx(Integer idx) {
+		return sqlSession.selectOne("article.findByIdx", idx);
 	}
 }

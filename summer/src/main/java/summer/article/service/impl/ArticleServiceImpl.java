@@ -46,4 +46,8 @@ public class ArticleServiceImpl implements ArticleService{
 		return articleRepository.insertArticle(article);
 	}
 	
+	@Override
+	public Article findByIdx(Integer idx) {
+		return articleRepository.findByIdx(idx);
+	}
 }

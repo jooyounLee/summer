@@ -18,8 +18,9 @@ $(() => {
 		    previewStyle: 'vertical',
 		    height: '500px'
 		})
-	
+
 	, save = () => {
+		console.log(editor.getHtml());
 		$.ajax({
 			type: 'POST',
 			data: {

@@ -3,14 +3,17 @@ package summer.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @EnableWebMvc // <mvc:annotation-driven> 필요한 설정 자동생성
+@EnableWebSecurity
 @ComponentScan(basePackages = "summer")
 public class WebConfig implements WebMvcConfigurer {
 	// 리소스 폴더 설정
@@ -18,6 +21,13 @@ public class WebConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
     }
+	
+	@Override
+	public void addViewControllers(ViewControllerRegistry registry) {
+		registry.addViewController("/login").setViewName("login");
+		registry.addViewController("/").setViewName("articles");
+		registry.addViewController("/articles").setViewName("articles");
+	}
  
 	// <mvc:default-servlet-handler> 디폴트 서블릿 핸들러
     @Override

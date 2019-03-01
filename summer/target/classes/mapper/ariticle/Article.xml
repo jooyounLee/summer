@@ -11,15 +11,25 @@
 	  	 WHERE DELETED = 0
 	</select>
 	
-	<select id="articles" resultType="summer.article.model.Article">
+	<select id="findAll" resultType="summer.article.model.Article">
 		SELECT IDX
 			,  USER_NM AS USERNAME
 			,  TITLE
-			,  CREATED
+			,  DATE_FORMAT(CREATED, '%Y-%m-%d') AS CREATED
 		  FROM BOARD
 		 WHERE DELETED = 0
 		 ORDER BY IDX DESC 
 		 LIMIT #{offset}, #{perPage}
+	</select>
+	
+	<select id="findByIdx" resultType="summer.article.model.Article">
+		SELECT IDX
+			,  USER_NM AS USERNAME
+			,  TITLE
+			,  CONTENT
+			,  DATE_FORMAT(CREATED, '%Y-%m-%d') AS CREATED
+		 FROM BOARD
+		WHERE IDX = #{idx}
 	</select>
 	
 	<insert id="insertArticle" parameterType="summer.article.model.Article">

@@ -11,4 +11,6 @@ public interface ArticleService {
 	List<Article> findArticles(Integer currentPage, Integer perPage);
 	
 	int insertArticle(Article article);
+
+	Article findByIdx(Integer idx);
 }

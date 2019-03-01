@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -30,7 +31,7 @@ public class ArticleController {
 	public String goWritePage(Model model) {
 		return "/article/write";
 	}
-    
+
 	@GetMapping("/articles")
     public @ResponseBody Map<String, Object> list(Integer page, Integer perPage) {
 	   Map<String, Object> result = new HashMap<String, Object>();
@@ -46,17 +47,6 @@ public class ArticleController {
 	   result.put("result", true);
 	   result.put("data", articles);
 	   
-//	   {
-//		    "result": true,
-//		    "data": {
-//		        "contents": [],
-//		        "pagination": {
-//		            "page": 1,
-//		            "totalCount": 100
-//		        }
-//		    }
-//		}
-	   
 	   return result;
     }
    
@@ -65,5 +55,11 @@ public class ArticleController {
 	   return articleService.insertArticle(article);
    }
    
+   @GetMapping("/article/{idx}")
+   public @ResponseBody Article select(@PathVariable Integer idx) {
+	   Article article = articleService.findByIdx(idx);
+	   return article;
+   }
   
 }
+
